@@ -1,0 +1,1990 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background:transparent;
+    color: #7d294e;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
+   PIN SCREEN
+===================================================== */
+
+.pin-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #fff1f7 0%,
+            #ffc5dc 50%,
+            #f29bc0 100%
+        );
+
+    overflow: hidden;
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.pin-screen.hide {
+    opacity: 0;
+    transform: scale(1.15);
+    pointer-events: none;
+}
+
+.pin-box {
+    position: relative;
+    z-index: 5;
+
+    width: min(90%, 450px);
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, .75);
+
+    border: 1px solid rgba(255, 255, 255, .9);
+
+    border-radius: 35px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 80px rgba(145, 42, 85, .2),
+        inset 0 0 30px rgba(255, 255, 255, .4);
+
+    animation: pinAppear 1.5s ease;
+}
+
+@keyframes pinAppear {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.lock-heart {
+    font-size: 65px;
+    margin-bottom: 15px;
+
+    animation:
+        heartbeat 1.5s infinite,
+        floating 3s ease-in-out infinite;
+}
+
+.pin-box h1 {
+    font-family: 'Great Vibes', cursive;
+
+    font-size: clamp(35px, 7vw, 55px);
+
+    color: #b52e64;
+
+    font-weight: 400;
+}
+
+.pin-box p {
+    margin: 12px auto 25px;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+
+    max-width: 330px;
+}
+
+.pin-inputs input {
+    width: 100%;
+    height: 60px;
+
+    border: 2px solid #ef91b6;
+
+    border-radius: 20px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, .85);
+
+    text-align: center;
+
+    font-size: 25px;
+
+    letter-spacing: 8px;
+
+    color: #a7295d;
+
+    transition: .3s;
+}
+
+.pin-inputs input:focus {
+    border-color: #c63a73;
+
+    box-shadow:
+        0 0 0 5px rgba(198, 58, 115, .1),
+        0 10px 30px rgba(198, 58, 115, .15);
+}
+
+#openButton {
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e94d87,
+            #b92c64
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px rgba(185, 44, 100, .3);
+
+    transition: .3s;
+}
+
+#openButton:hover {
+    transform: translateY(-4px) scale(1.02);
+
+    box-shadow:
+        0 18px 35px rgba(185, 44, 100, .4);
+}
+
+#errorMessage {
+    color: #d22e5f;
+    min-height: 20px;
+}
+
+.pin-box small {
+    color: #a75a79;
+}
+
+
+/* =====================================================
+   ANIMASI UMUM
+===================================================== */
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* =====================================================
+   FLOATING HEART PIN
+===================================================== */
+
+.pin-hearts span {
+    position: absolute;
+
+    font-size: 25px;
+
+    animation:
+        pinFloat 7s linear infinite;
+
+    opacity: .7;
+}
+
+.pin-hearts span:nth-child(1) {
+    left: 10%;
+    bottom: -50px;
+    animation-delay: 0s;
+}
+
+.pin-hearts span:nth-child(2) {
+    left: 30%;
+    bottom: -50px;
+    animation-delay: 2s;
+}
+
+.pin-hearts span:nth-child(3) {
+    left: 55%;
+    bottom: -50px;
+    animation-delay: 4s;
+}
+
+.pin-hearts span:nth-child(4) {
+    left: 75%;
+    bottom: -50px;
+    animation-delay: 1s;
+}
+
+.pin-hearts span:nth-child(5) {
+    left: 90%;
+    bottom: -50px;
+    animation-delay: 3s;
+}
+
+@keyframes pinFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: .8;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   STORY SECTION
+===================================================== */
+
+.story-section {
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 70px 20px;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro-section {
+    background:
+        radial-gradient(
+            circle at center,
+            #fff1f7 0%,
+            #ffd4e5 45%,
+            #f5a3c5 100%
+        );
+}
+
+.intro-content {
+    position: relative;
+
+    z-index: 3;
+
+    width: 100%;
+
+    max-width: 850px;
+
+    text-align: center;
+
+    animation:
+        introReveal 2s ease;
+}
+
+@keyframes introReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.7)
+            translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+.small-title {
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #a64a70;
+}
+
+.intro-content h1 {
+    margin-top: 15px;
+
+    font-family: 'Great Vibes', cursive;
+
+    font-size:
+        clamp(
+            65px,
+            12vw,
+            120px
+        );
+
+    font-weight: 400;
+
+    color: #8e1f50;
+
+    text-shadow:
+        0 10px 30px
+        rgba(135, 26, 75, .15);
+}
+
+.intro-content h1 span {
+    color: #d73475;
+}
+
+.intro-content h2 {
+    margin-top: -15px;
+
+    font-size:
+        clamp(
+            25px,
+            5vw,
+            45px
+        );
+
+    font-weight: 500;
+
+    color: #9f315d;
+}
+
+.birth-date {
+    margin-top: 15px;
+
+    font-size: 16px;
+
+    letter-spacing: 5px;
+
+    color: #a95777;
+}
+
+
+/* =====================================================
+   ❤️ HATI + PANAH
+   VERSI BARU
+===================================================== */
+
+.heart-arrow {
+    position: relative !important;
+
+    width: min(720px, 96vw);
+
+    height: 180px;
+
+    margin: 35px auto;
+
+    display: block !important;
+
+    overflow: visible !important;
+}
+
+
+/* =====================================================
+   HATI
+
+   HATI DIKUNCI TEPAT DI TENGAH
+===================================================== */
+
+.big-heart {
+    position: absolute !important;
+
+    left: 50% !important;
+
+    top: 50% !important;
+
+    margin: 0 !important;
+
+    z-index: 20 !important;
+
+    font-size: 105px;
+
+    line-height: 1;
+
+    transform:
+        translate(-50%, -50%) !important;
+
+    filter:
+        drop-shadow(
+            0 12px 20px
+            rgba(173, 27, 79, .3)
+        );
+
+    animation:
+        heartCenterBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartCenterBeat {
+
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+    }
+}
+
+
+/* ==========================================
+   PANAH MENEMBUS HATI
+========================================== */
+
+.arrow-line {
+    position: absolute;
+
+    /* TITIK TENGAH SEJAJAR DENGAN HATI */
+    left: 50%;
+    top: 50%;
+
+    width: 420px;
+    height: 7px;
+
+    margin: 0;
+
+    background: #a91f5b;
+
+    border-radius: 20px;
+
+    z-index: 10;
+
+    /*
+       PENTING:
+       JANGAN pakai !important pada transform
+       karena transform akan dianimasikan.
+    */
+
+    transform:
+        translate(-50%, -50%)
+        translateX(-500px);
+
+    animation:
+        arrowThroughHeart 2.8s
+        ease-in-out
+        infinite;
+}
+
+
+/* ==========================================
+   UJUNG ANAK PANAH
+========================================== */
+
+.arrow-tip {
+    position: absolute;
+
+    right: -9px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 48px;
+
+    line-height: 1;
+
+    color: #a91f5b;
+
+    z-index: 11;
+}
+
+
+/* ==========================================
+   BULU / EKOR PANAH
+========================================== */
+
+.arrow-line::before,
+.arrow-line::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    width: 32px;
+    height: 7px;
+
+    background: #a91f5b;
+
+    border-radius: 10px;
+}
+
+
+/* bulu atas */
+
+.arrow-line::before {
+
+    top: -11px;
+
+    transform:
+        rotate(45deg);
+
+    transform-origin:
+        left center;
+}
+
+
+/* bulu bawah */
+
+.arrow-line::after {
+
+    bottom: -11px;
+
+    transform:
+        rotate(-45deg);
+
+    transform-origin:
+        left center;
+}
+
+
+/* ==========================================
+   ANIMASI PANAH - HALUS
+========================================== */
+
+.arrow-line {
+    animation: arrowThroughHeart 3s linear infinite;
+}
+
+
+@keyframes arrowThroughHeart {
+
+    /* mulai dari kiri */
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            translateX(-500px);
+
+        opacity: 0;
+    }
+
+    /* mulai terlihat */
+
+    8% {
+        opacity: 1;
+    }
+
+    /* bergerak terus dengan kecepatan konstan */
+
+    92% {
+        opacity: 1;
+    }
+
+    /* keluar kanan */
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            translateX(500px);
+
+        opacity: 0;
+    }
+
+
+    /* MUNCUL */
+
+    10% {
+
+        transform:
+            translate(-50%, -50%)
+            translateX(-420px);
+
+        opacity: 1;
+    }
+
+
+    /* MENDEKATI HATI */
+
+    35% {
+
+        transform:
+            translate(-50%, -50%)
+            translateX(-280px);
+
+        opacity: 1;
+    }
+
+
+    /* =====================================
+       PANAH MASUK KE HATI
+    ===================================== */
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            translateX(-100px);
+
+        opacity: 1;
+    }
+
+
+    /* =====================================
+       PANAH TEPAT MENEMBUS TENGAH HATI
+    ===================================== */
+
+    60% {
+
+        transform:
+            translate(-50%, -50%)
+            translateX(0px);
+
+        opacity: 1;
+    }
+
+
+    /* =====================================
+       KELUAR DARI HATI
+    ===================================== */
+
+    75% {
+
+        transform:
+            translate(-50%, -50%)
+            translateX(180px);
+
+        opacity: 1;
+    }
+
+
+    /* =====================================
+       TERUS KE KANAN
+    ===================================== */
+
+    90% {
+
+        transform:
+            translate(-50%, -50%)
+            translateX(350px);
+
+        opacity: 1;
+    }
+
+
+    /* HILANG */
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            translateX(500px);
+
+        opacity: 0;
+    }
+
+    /*
+       PANAH TEPAT MENEMBUS HATI
+    */
+
+    55% {
+
+        left: calc(50% - 210px) !important;
+
+        opacity: 1;
+    }
+
+
+    /*
+       PANAH SUDAH MELEWATI HATI
+    */
+
+    75% {
+
+        left: calc(50% + 10px) !important;
+
+        opacity: 1;
+    }
+
+
+    /*
+       KELUAR KE KANAN
+    */
+
+    90% {
+
+        left: calc(50% + 120px) !important;
+
+        opacity: 1;
+    }
+
+
+    /* menghilang */
+
+    100% {
+
+        left: calc(50% + 180px) !important;
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   TEKS INTRO
+===================================================== */
+
+.intro-text {
+    max-width: 700px;
+
+    margin: 20px auto;
+
+    line-height: 2;
+
+    color: #8e4664;
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+.floating-heart {
+    position: absolute;
+
+    font-size: 30px;
+
+    opacity: .7;
+
+    animation:
+        floating 3s
+        ease-in-out
+        infinite;
+}
+
+.h1 {
+    top: 15%;
+    left: 10%;
+}
+
+.h2 {
+    top: 30%;
+    right: 12%;
+
+    animation-delay: .7s;
+}
+
+.h3 {
+    bottom: 15%;
+    left: 15%;
+
+    animation-delay: 1.2s;
+}
+
+.h4 {
+    bottom: 25%;
+    right: 15%;
+
+    animation-delay: 1.8s;
+}
+
+
+/* =====================================================
+   OPENING
+===================================================== */
+
+.opening-section {
+    background:
+        linear-gradient(
+            135deg,
+            #ffe8f1,
+            #ffc6db
+        );
+}
+
+.opening-card {
+    width: min(650px, 95%);
+
+    padding: 50px 40px;
+
+    text-align: center;
+
+    border-radius: 35px;
+
+    background:
+        rgba(255, 255, 255, .65);
+
+    backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+        0 30px 80px
+        rgba(147, 38, 83, .15);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, .8);
+
+    animation:
+        cardFloat 5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes cardFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-12px);
+    }
+}
+
+.mini-heart {
+    font-size: 40px;
+}
+
+.opening-card h2 {
+    margin: 20px 0;
+
+    font-family:
+        'Great Vibes',
+        cursive;
+
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            70px
+        );
+
+    font-weight: 400;
+
+    color: #b82e65;
+}
+
+.line {
+    width: 100px;
+
+    height: 2px;
+
+    background: #d94d82;
+
+    margin:
+        20px auto 30px;
+}
+
+.opening-card p {
+    line-height: 2;
+
+    margin: 20px 0;
+
+    color: #83405f;
+}
+
+.opening-card .highlight {
+    font-weight: 600;
+
+    color: #c22f6b;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   LETTER
+===================================================== */
+
+.letter-section {
+    min-height: auto;
+
+    padding:
+        120px 20px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            #ffeef6,
+            #ffc8dd
+        );
+}
+
+.letter-container {
+    width:
+        min(900px, 95%);
+
+    padding: 60px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffafd,
+            #fff2f7
+        );
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 30px 80px
+        rgba(139, 36, 79, .15);
+
+    border:
+        1px solid
+        rgba(214, 109, 147, .15);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.letter-container::before {
+    content: "♥";
+
+    position: absolute;
+
+    right: -30px;
+    top: -50px;
+
+    font-size: 180px;
+
+    color:
+        rgba(232, 89, 138, .06);
+
+    transform:
+        rotate(20deg);
+}
+
+.letter-top {
+    text-align: center;
+
+    font-size: 55px;
+
+    margin-bottom: 15px;
+
+    animation:
+        heartbeat 2s infinite;
+}
+
+.letter-container h2 {
+    text-align: center;
+
+    font-family:
+        'Great Vibes',
+        cursive;
+
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            70px
+        );
+
+    font-weight: 400;
+
+    color: #ad2b61;
+
+    margin-bottom: 45px;
+}
+
+.letter-container p {
+    font-size: 16px;
+
+    line-height: 2.1;
+
+    margin-bottom: 25px;
+
+    color: #74435a;
+
+    text-align: justify;
+}
+
+.letter-ending {
+    text-align: center !important;
+
+    margin-top: 45px;
+
+    color: #a5295e !important;
+
+    font-size: 18px !important;
+}
+
+.letter-ending strong {
+    font-family:
+        'Great Vibes',
+        cursive;
+
+    font-size: 40px;
+
+    font-weight: 400;
+}
+
+
+/* =====================================================
+   CINEMATIC SLIDESHOW
+===================================================== */
+
+.slideshow-section {
+    position: relative;
+
+    width: 100%;
+
+    height: 100vh;
+
+    min-height: 650px;
+
+    overflow: hidden;
+
+    background: #180711;
+}
+
+.photo-slide {
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        scale(1.08);
+
+    transition:
+        opacity 1.5s ease,
+        transform 6s ease,
+        visibility 1.5s;
+
+    z-index: 1;
+}
+
+.photo-slide.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        scale(1);
+}
+
+.photo-slide img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transform:
+        scale(1.08);
+
+    transition:
+        transform 7s ease;
+}
+
+.photo-slide.active img {
+    transform:
+        scale(1);
+}
+
+.photo-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(20, 3, 12, .9),
+            rgba(30, 5, 20, .1) 60%,
+            rgba(20, 3, 12, .2)
+        );
+}
+
+.photo-caption {
+    position: absolute;
+
+    left: 8%;
+
+    right: 8%;
+
+    bottom: 12%;
+
+    max-width: 800px;
+
+    color: white;
+
+    opacity: 0;
+
+    transform:
+        translateY(50px);
+
+    transition:
+        opacity 1s ease .5s,
+        transform 1s ease .5s;
+}
+
+.photo-slide.active .photo-caption {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+.photo-caption span {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #ffb7d3;
+}
+
+.photo-caption h2 {
+    font-family:
+        'Great Vibes',
+        cursive;
+
+    font-size:
+        clamp(
+            38px,
+            6vw,
+            72px
+        );
+
+    line-height: 1.1;
+
+    font-weight: 400;
+
+    text-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, .5);
+}
+
+.slide-counter {
+    position: absolute;
+
+    top: 40px;
+
+    right: 50px;
+
+    z-index: 20;
+
+    color: white;
+
+    font-size: 15px;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 3px 15px black;
+}
+
+#currentPhoto {
+    color: #ffb5d1;
+
+    font-size: 25px;
+}
+
+.slide-progress {
+    position: absolute;
+
+    left: 8%;
+
+    right: 8%;
+
+    bottom: 6%;
+
+    height: 2px;
+
+    z-index: 20;
+
+    background:
+        rgba(255, 255, 255, .3);
+
+    overflow: hidden;
+}
+
+#progressBar {
+    display: block;
+
+    height: 100%;
+
+    width: 0%;
+
+    background: #ffb3d0;
+
+    transition:
+        width linear;
+}
+
+
+/* =====================================================
+   CAKE
+===================================================== */
+
+.cake-section {
+    background:
+        radial-gradient(
+            circle at center,
+            #fff0f7,
+            #ffc9de,
+            #f39abf
+        );
+
+    text-align: center;
+}
+
+.cake-container {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+}
+
+.cake-small {
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    font-size: 13px;
+
+    color: #a3496c;
+}
+
+.cake-container h2 {
+    margin:
+        20px 0 50px;
+
+    font-family:
+        'Great Vibes',
+        cursive;
+
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            75px
+        );
+
+    font-weight: 400;
+
+    color: #a5265c;
+}
+
+
+/* =====================================================
+   CAKE BODY
+===================================================== */
+
+.cake {
+    position: relative;
+
+    width: 280px;
+
+    height: 220px;
+
+    margin: auto;
+}
+
+.cake-body {
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 25px;
+
+    width: 230px;
+
+    height: 100px;
+
+    border-radius:
+        20px 20px 30px 30px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #ff91b9,
+            #e85a91
+        );
+
+    box-shadow:
+        0 25px 35px
+        rgba(160, 38, 88, .25);
+}
+
+.cake-top {
+    position: absolute;
+
+    left: 25px;
+
+    top: 75px;
+
+    width: 230px;
+
+    height: 50px;
+
+    border-radius: 50%;
+
+    background: #ffb4ce;
+
+    z-index: 3;
+}
+
+.cake-bottom {
+    position: absolute;
+
+    left: 5px;
+
+    bottom: 0;
+
+    width: 270px;
+
+    height: 30px;
+
+    border-radius: 50%;
+
+    background: #c83b70;
+}
+
+.cake-decoration {
+    position: absolute;
+
+    width: 20px;
+
+    height: 20px;
+
+    background: #fff0f6;
+
+    border-radius: 50%;
+
+    bottom: 30px;
+}
+
+.cake-decoration:nth-child(1) {
+    left: 45px;
+}
+
+.cake-decoration:nth-child(2) {
+    left: 105px;
+}
+
+.cake-decoration:nth-child(3) {
+    right: 45px;
+}
+
+
+/* =====================================================
+   CANDLE
+===================================================== */
+
+.candle {
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+
+    top: 5px;
+
+    transform:
+        translateX(-50%);
+
+    width: 25px;
+
+    height: 80px;
+
+    border-radius: 8px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #fff,
+            #fff 8px,
+            #ff8db7 8px,
+            #ff8db7 16px
+        );
+}
+
+
+/* =====================================================
+   FLAME
+===================================================== */
+
+.flame {
+    position: absolute;
+
+    left: 50%;
+
+    top: -45px;
+
+    width: 30px;
+
+    height: 45px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        radial-gradient(
+            ellipse at center bottom,
+            #fff 0%,
+            #ffe66b 25%,
+            #ff8c00 65%,
+            transparent 70%
+        );
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    animation:
+        flame 1s
+        infinite alternate;
+}
+
+@keyframes flame {
+
+    from {
+        transform:
+            translateX(-50%)
+            scale(.85)
+            rotate(-3deg);
+    }
+
+    to {
+        transform:
+            translateX(-50%)
+            scale(1.1)
+            rotate(3deg);
+    }
+}
+
+.cake-text {
+    margin-top: 40px;
+
+    font-size: 17px;
+
+    line-height: 2;
+
+    color: #833f5d;
+}
+
+
+/* =====================================================
+   FINAL SECTION
+===================================================== */
+
+.final-section {
+    background:
+        radial-gradient(
+            circle at center,
+            #fff1f7,
+            #ffd0e2,
+            #ed91b9
+        );
+
+    text-align: center;
+}
+
+.final-content {
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 850px;
+}
+
+.final-icon {
+    font-size: 75px;
+
+    animation:
+        heartbeat 1.6s infinite;
+}
+
+.final-content h1 {
+    margin-top: 20px;
+
+    font-family:
+        'Great Vibes',
+        cursive;
+
+    font-size:
+        clamp(
+            65px,
+            11vw,
+            110px
+        );
+
+    font-weight: 400;
+
+    color: #8e1f50;
+}
+
+.final-content h1 span {
+    color: #d52f70;
+}
+
+.final-content h2 {
+    font-size:
+        clamp(
+            25px,
+            5vw,
+            45px
+        );
+
+    font-weight: 500;
+
+    color: #9c315d;
+}
+
+.final-content > p {
+    margin-top: 10px;
+
+    letter-spacing: 4px;
+
+    color: #9b5774;
+}
+
+.final-line {
+    width: 120px;
+
+    height: 2px;
+
+    margin: 35px auto;
+
+    background: #c7386f;
+}
+
+.final-message {
+    max-width: 650px;
+
+    margin: 20px auto !important;
+
+    font-size: 16px !important;
+
+    line-height: 2 !important;
+
+    letter-spacing: 0 !important;
+}
+
+.final-love {
+    margin-top: 45px;
+
+    font-family:
+        'Great Vibes',
+        cursive;
+
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            75px
+        );
+
+    color: #bb225e;
+
+    animation:
+        heartbeat 1.5s infinite;
+}
+
+.final-signature {
+    margin-top: 25px;
+
+    font-family:
+        'Great Vibes',
+        cursive;
+
+    font-size: 30px;
+
+    color: #8e4664;
+}
+
+.final-hearts {
+    position: absolute;
+
+    top: 12%;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    white-space: nowrap;
+
+    font-size: 25px;
+
+    letter-spacing: 15px;
+
+    opacity: .8;
+
+    animation:
+        floating 3s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+#confettiContainer {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 99999;
+
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+
+    top: -30px;
+
+    width: 10px;
+
+    height: 18px;
+
+    opacity: .9;
+
+    animation:
+        confettiFall
+        linear
+        forwards;
+}
+
+@keyframes confettiFall {
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+
+/* =====================================================
+   TAMBAHAN EFEK CAHAYA
+===================================================== */
+
+.story-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+
+    height: 300px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, .18);
+
+    filter: blur(60px);
+
+    animation:
+        softGlow 6s
+        ease-in-out
+        infinite;
+}
+
+@keyframes softGlow {
+
+    0%,
+    100% {
+        transform:
+            translate(-100px, -50px)
+            scale(1);
+
+        opacity: .3;
+    }
+
+    50% {
+        transform:
+            translate(100px, 50px)
+            scale(1.4);
+
+        opacity: .6;
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE HP
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .pin-box {
+        padding:
+            35px 22px;
+    }
+
+
+    /* INTRO */
+
+    .intro-content h1 {
+        font-size: 65px;
+    }
+
+    .birth-date {
+        font-size: 13px;
+
+        letter-spacing: 3px;
+    }
+
+
+    /* PANAH */
+
+    .heart-arrow {
+        width: 100vw;
+
+        height: 150px;
+    }
+
+    .big-heart {
+        font-size: 85px;
+    }
+
+    .arrow-line {
+        width: 600px;
+
+        left: -430px !important;
+    }
+
+    .arrow-tip {
+        font-size: 45px;
+    }
+
+
+    /* OPENING */
+
+    .opening-card {
+        padding:
+            40px 25px;
+    }
+
+
+    /* LETTER */
+
+    .letter-container {
+        padding:
+            40px 25px;
+    }
+
+    .letter-container p {
+        font-size: 14px;
+
+        text-align: left;
+    }
+
+
+    /* SLIDESHOW */
+
+    .slideshow-section {
+        min-height: 100vh;
+    }
+
+    .photo-caption {
+        left: 7%;
+
+        right: 7%;
+
+        bottom: 13%;
+    }
+
+    .photo-caption h2 {
+        font-size: 42px;
+    }
+
+    .photo-caption span {
+        font-size: 10px;
+
+        letter-spacing: 3px;
+    }
+
+    .slide-counter {
+        top: 25px;
+
+        right: 25px;
+    }
+
+    .slide-progress {
+        left: 7%;
+
+        right: 7%;
+    }
+
+
+    /* CAKE */
+
+    .cake {
+        transform:
+            scale(.8);
+    }
+
+
+    /* FINAL */
+
+    .final-message {
+        padding:
+            0 20px;
+    }
+
+    .final-hearts {
+        letter-spacing: 5px;
+
+        font-size: 18px;
+    }
+}
+
+
+/* =====================================================
+   HP SANGAT KECIL
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .intro-content h1 {
+        font-size: 55px;
+    }
+
+    .intro-content h2 {
+        font-size: 24px;
+    }
+
+    .big-heart {
+        font-size: 75px;
+    }
+
+    .arrow-line {
+        width: 520px;
+    }
+
+    .photo-caption h2 {
+        font-size: 36px;
+    }
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+
+        transition-duration: .01ms !important;
+    }
+}
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 182, 210, 0.60),
+            rgba(255, 214, 231, 0.60)
+        ),
+        url("images/background.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: #7d294e;
+}
